@@ -83,4 +83,6 @@ Thumbs.db
 # Ignore CSS files (if not needed in repo)
 # Uncomment the next line if you want to ignore all CSS files
 #*.css
+
+# Environment variables
 .env
