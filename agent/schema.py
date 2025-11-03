@@ -15,3 +15,27 @@ class ResponseFormat:
     action: str
     explanation: str
     file_modified: str | None = None
+
+    def __str__(self) -> str:
+        """Return the response as plain text (no '=' signs, just normal text).
+
+        Format:
+        - first line(s): action (as provided)
+        - then a blank line
+        - explanation
+        - then a blank line (if file_modified present)
+        - file_modified (if present)
+        """
+        parts: list[str] = []
+        # Keep provided text as-is (strip only surrounding whitespace)
+        if self.action is not None:
+            parts.append(self.action.strip())
+
+        if self.explanation is not None:
+            parts.append(self.explanation.strip())
+
+        if self.file_modified:
+            parts.append(self.file_modified.strip())
+
+        # Join with a blank line between sections to keep readability
+        return "\n\n".join(parts)
