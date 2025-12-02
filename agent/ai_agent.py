@@ -1,7 +1,19 @@
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from .config import model, SYSTEM_PROMPT, selected_model
-from .tools import read_file, write_file, list_files
+from .tools import (
+    read_file, 
+    write_file, 
+    list_files, 
+    make_dir, 
+    delete_file, 
+    delete_dir, 
+    list_dir, 
+    run_terminal_command,
+    web_search,
+    create_plan,
+    update_plan
+)
 from .schema import Context, ResponseFormat
 
 # --- In-memory checkpoint for multi-step reasoning ---
@@ -18,7 +30,19 @@ def build_agent(system_prompt: str = SYSTEM_PROMPT):
         print("[AgenticAI] 🤖 Using Gemini with full tool support.")
         return create_agent(
             model=model,
-            tools=[read_file, write_file, list_files],
+            tools=[
+                read_file, 
+                write_file, 
+                list_files, 
+                make_dir, 
+                delete_file, 
+                delete_dir, 
+                list_dir, 
+                run_terminal_command,
+                web_search,
+                create_plan,
+                update_plan
+            ],
             system_prompt=system_prompt,
             response_format=ResponseFormat,
             context_schema=Context,
